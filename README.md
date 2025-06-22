@@ -100,14 +100,13 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
 ### Step 3: Vite Workflow Notes
 
 - Use the custom Vite plugin in `/plugins/vite-plugin-salla.ts` for Salla-specific sync and reload logic.
-- When editing `.twig` or `.json` files, always run:
-  ```sh
-  salla theme sync -f <path/to/file>
-  ```
-  and wait for completion before triggering a reload in the Salla preview UI.
 - Start your dev environment with:
   ```sh
   salla theme preview
+  ```
+  or to ignore some configuration with:
+  ```sh
+  salla theme p --with-editor --store=<your_store_name>
   ```
   (This will automatically run the Vite watcher.)
 
