@@ -4,7 +4,7 @@ import fsPromises from "fs/promises";
 import path from "path";
 import ws from "websocket";
 import { execSync } from "child_process";
-import { type Plugin } from "vite";
+import type { Plugin } from "vite";
 import { subscribe } from "@parcel/watcher";
 
 const { client: wsclient } = ws;
@@ -230,7 +230,7 @@ export default function sallaVitePlugin(): Plugin {
               }
 
               debounceTimers.delete(filePath);
-            }, 700); // 700ms debounce
+            }, 300); // 700ms debounce
 
             debounceTimers.set(filePath, timer);
           }
@@ -303,7 +303,7 @@ export default function sallaVitePlugin(): Plugin {
     name: "vite-plugin-salla",
     apply: "build",
 
-    config() {
+    config(_config, env) {
       // Load Salla configuration
       if (!loadSallaConfig()) {
         logger(
@@ -312,11 +312,12 @@ export default function sallaVitePlugin(): Plugin {
         );
       }
 
-      // Setup WebSocket connection
-      connectWebSocket();
-
-      // Setup file watcher
-      setupFileWatcher();
+      if (env.mode === "development") {
+        // Setup WebSocket connection
+        connectWebSocket(); 
+        // Setup file watcher
+        setupFileWatcher();
+      }
 
       // Define JavaScript entry points
       const jsEntries = {

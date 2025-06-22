@@ -104,7 +104,7 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
   ```sh
   salla theme preview
   ```
-  or to ignore some configuration with:
+- or to ignore some configuration with:
   ```sh
   salla theme p --with-editor --store=<your_store_name>
   ```
@@ -129,15 +129,13 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
 salla theme preview
 ```
 
-- **You do NOT need to run `npm run watch` or `pnpm watch` manually.**
+- **You do NOT need to run `pnpm watch` manually.**
 - The Salla CLI will automatically start the Vite watcher (`pnpm watch` or equivalent) in the background when you run the preview command.
 - Make changes to `.twig`, `.json`, `.js`, or `.scss` files and see them reflected instantly in your Salla preview browser.
 
 ### 3. Production Build
 
 ```bash
-npm run production
-# or
 pnpm production
 ```
 
@@ -177,7 +175,7 @@ pnpm production
 
 ## ❓ FAQ
 
-**Q: Do I need to run `npm run watch` or `pnpm watch` myself?**
+**Q: Do I need to run `pnpm watch` myself?**
 A: **No!** The Salla CLI automatically starts the Vite watcher when you run `salla theme preview`.
 
 **Q: Why do I need to run `salla theme preview` first?**
@@ -190,7 +188,7 @@ A: Ensure the sync completes (check logs), the WebSocket is connected, and your 
 A: All changes are debounced and queued, so only the latest version of each file is synced, and reload happens after all syncs complete.
 
 **Q: Can I use this in production?**
-A: Yes! For production builds, use `npm run production` to generate optimized assets in `public/`.
+A: Yes! For production builds, use `pnpm run production` to generate optimized assets in `public/`.
 
 ---
 
