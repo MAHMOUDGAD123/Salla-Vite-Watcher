@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
       mode === "development"
         ? {
             // Watch for changes in source files
-            include: ["src/assets/**"],
+            include: ["src/**"],
             exclude: ["node_modules/**", "public/**"],
           }
         : null,
