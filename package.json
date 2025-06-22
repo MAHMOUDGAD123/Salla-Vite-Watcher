@@ -5,6 +5,7 @@
     "vite:test": "ts-node ./test/test-vite-plugin.ts"
   },
   "devDependencies": {
+    "@types/websocket": "^1.0.10",
     "@parcel/watcher": "^2.5.1",
     "cross-env": "^7.0.3",
     "vite": "^6.3.5",

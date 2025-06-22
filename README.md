@@ -73,9 +73,9 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
    - `tsconfig.json` file
    - `vite.config.ts` file
 2. Update your `package.json`:
-   - Add all needed packages as dev dependencies:
+   - Add all needed packages as dev dependencies then install them:
      ```sh
-     pnpm i -D vite typescript @parcel/watcher ts-node websocket cross-env
+     pnpm i
      ```
    - Add scripts for Vite:
      ```json
@@ -88,7 +88,7 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
 
 ### Step 2: Update Script Tags for ESM
 
-- In all relevant `.twig` template files, update every `<script>` tag that loads a JS file to use ESM by adding `type="module"`:
+- In all relevant `.twig` template files in /src, update every local `<script>` tag that loads a JS file to use ESM by adding `type="module"`:
   ```html
   <script src="..." type="module"></script>
   ```
