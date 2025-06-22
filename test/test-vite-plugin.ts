@@ -15,7 +15,7 @@ const { client: wsclient } = ws;
 console.log("🧪 Testing Salla Vite Plugin Configuration...\n");
 
 // Test 1: Check if Salla CLI config exists
-console.log("1️⃣ Checking Salla CLI configuration...");
+console.log("1️⃣  Checking Salla CLI configuration...");
 const cachePath = path.join(process.cwd(), "/node_modules/.salla-cli");
 
 if (fs.existsSync(cachePath)) {
@@ -30,7 +30,10 @@ if (fs.existsSync(cachePath)) {
       `   Upload URL: ${config.upload_url ? "Configured" : "Missing"}`
     );
   } catch (error) {
-    console.log("❌ Failed to parse Salla CLI config:", error.message);
+    console.log(
+      "❌ Failed to parse Salla CLI config:",
+      (error as Error).message
+    );
   }
 } else {
   console.log("❌ Salla CLI config not found");
@@ -38,8 +41,8 @@ if (fs.existsSync(cachePath)) {
 }
 
 // Test 2: Check if Vite plugin exists
-console.log("\n2️⃣ Checking Vite plugin...");
-const pluginPath = path.join(process.cwd(), "/plugins/vite-plugin-salla.js");
+console.log("\n2️⃣  Checking Vite plugin...");
+const pluginPath = path.join(process.cwd(), "/plugins/vite-plugin-salla.ts");
 
 if (fs.existsSync(pluginPath)) {
   console.log("✅ Vite plugin found");
@@ -66,8 +69,8 @@ if (fs.existsSync(pluginPath)) {
 }
 
 // Test 3: Check if Vite config exists
-console.log("\n3️⃣ Checking Vite configuration...");
-const viteConfigPath = path.join(process.cwd(), "/vite.config.mjs");
+console.log("\n3️⃣  Checking Vite configuration...");
+const viteConfigPath = path.join(process.cwd(), "/vite.config.ts");
 
 if (fs.existsSync(viteConfigPath)) {
   console.log("✅ Vite config found");
@@ -83,7 +86,7 @@ if (fs.existsSync(viteConfigPath)) {
 }
 
 // Test 4: Check source directories
-console.log("\n4️⃣ Checking source directories...");
+console.log("\n4️⃣  Checking source directories...");
 const directories = [
   { path: "src/assets/js", name: "JavaScript files" },
   { path: "src/assets/styles", name: "SCSS files" },
@@ -101,7 +104,7 @@ directories.forEach((dir) => {
 });
 
 // Test 5: Check package.json scripts
-console.log("\n5️⃣ Checking package.json scripts...");
+console.log("\n5️⃣  Checking package.json scripts...");
 const packagePath = path.join(process.cwd(), "/package.json");
 
 if (fs.existsSync(packagePath)) {
@@ -123,14 +126,14 @@ if (fs.existsSync(packagePath)) {
       }
     });
   } catch (error) {
-    console.log("❌ Failed to parse package.json:", error.message);
+    console.log("❌ Failed to parse package.json:", (error as Error).message);
   }
 } else {
   console.log("❌ package.json not found");
 }
 
 // Test 6: Optional WebSocket connection test
-console.log("\n6️⃣ Testing WebSocket connection (optional)...");
+console.log("\n6️⃣  Testing WebSocket connection (optional)...");
 const config = fs.existsSync(cachePath)
   ? JSON.parse(fs.readFileSync(cachePath, "utf8"))
   : null;
@@ -153,6 +156,7 @@ if (config && config.wsport) {
 
     // Timeout after 5 seconds
     setTimeout(() => {
+      // @ts-ignore
       if (client.state !== "CONNECTED") {
         console.log("⏰ WebSocket connection timeout");
         console.log(
@@ -161,7 +165,7 @@ if (config && config.wsport) {
       }
     }, 5000);
   } catch (error) {
-    console.log(`❌ WebSocket connection error: ${error.message}`);
+    console.log(`❌ WebSocket connection error: ${(error as Error).message}`);
   }
 } else {
   console.log("⚠️  WebSocket port not configured");

@@ -1,7 +1,5 @@
 # Salla Vite Plugin (`vite-plugin-salla`)
 
-![Vite Plugin in Action](Salla-Vite.png)
-
 A high-performance, modern Vite plugin that supercharges Salla theme development by replacing the legacy Webpack workflow. Enjoy instant hot reloads, robust .twig syncing, and a seamless developer experience tailored for Salla CLI and Twilight themes.
 
 ---
@@ -61,6 +59,64 @@ A high-performance, modern Vite plugin that supercharges Salla theme development
 
 ---
 
+# Using Vite as a Dev Tool for Salla Theme
+
+## ⚡ Migration Guide: Preparing Your Salla Theme for Vite
+
+Follow these steps to migrate your Salla theme to use Vite as a development tool:
+
+### Step 1: Project Structure & Dependencies
+
+1. Ensure the following exist in your project root:
+   - `/plugins` folder
+   - `/test` folder
+   - `tsconfig.json` file
+   - `vite.config.ts` file
+2. Update your `package.json`:
+   - Add all needed packages as dev dependencies:
+     ```sh
+     pnpm i -D vite typescript @parcel/watcher ts-node websocket cross-env
+     ```
+   - Add scripts for Vite:
+     ```json
+     "scripts": {
+       "_watch": "webpack --mode development --watch", // ignore it
+       "watch": "cross-env NODE_NO_WARNINGS=1 vite build --mode development --watch",
+       "vite:test": "ts-node ./test/test-vite-plugin.ts"
+     }
+     ```
+
+### Step 2: Update Script Tags for ESM
+
+- In all relevant `.twig` template files, update every `<script>` tag that loads a JS file to use ESM by adding `type="module"`:
+  ```html
+  <script src="..." type="module"></script>
+  ```
+- Specifically, update:
+  - `src/views/layouts/master.twig`
+  - `src/views/pages/index.twig`
+  - `src/views/pages/product/single.twig`
+
+### Step 3: Vite Workflow Notes
+
+- Use the custom Vite plugin in `/plugins/vite-plugin-salla.ts` for Salla-specific sync and reload logic.
+- When editing `.twig` or `.json` files, always run:
+  ```sh
+  salla theme sync -f <path/to/file>
+  ```
+  and wait for completion before triggering a reload in the Salla preview UI.
+- Start your dev environment with:
+  ```sh
+  salla theme preview
+  ```
+  (This will automatically run the Vite watcher.)
+
+## Notes
+
+- The Salla CLI and preview system require templates to be synced to the server for changes to appear.
+- ESM (`type="module"`) is required for Vite compatibility.
+- For more details, see the comments in `vite-plugin-salla.ts` and the Salla documentation.
+
 ## 🛠️ Usage
 
 ### 1. Prerequisites
@@ -93,7 +149,7 @@ pnpm production
 ## 🔄 Migration from Webpack
 
 1. **Remove old Webpack config and plugins** (if present):
-   - Delete `webpack.config.js`, any custom watcher plugins, and related scripts.
+   - Ignore `webpack.config.js`, any custom watcher plugins, and related scripts.
 2. **Ensure `vite-plugin-salla` is present** in your `plugins/` directory and referenced in `vite.config.ts`.
 3. **Update your scripts** in `package.json` to use Vite commands (`watch`, `development`, `production`).
 4. **Test your workflow**:
