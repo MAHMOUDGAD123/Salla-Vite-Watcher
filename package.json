@@ -1,6 +1,8 @@
 {
   "type": "module",
   "scripts": {
+    "production": "cross-env NODE_NO_WARNINGS=1 vite build --mode production",
+    "prod": "cross-env NODE_NO_WARNINGS=1 vite build --mode production",
     "watch": "cross-env NODE_NO_WARNINGS=1 vite build --mode development --watch",
     "vite:test": "ts-node ./test/test-vite-plugin.ts"
   },

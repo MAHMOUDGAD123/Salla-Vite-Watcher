@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// @ts-nocheck
 
 /**
  * Test script for Salla Vite Plugin

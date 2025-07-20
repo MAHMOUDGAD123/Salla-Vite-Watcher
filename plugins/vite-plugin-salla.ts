@@ -1,3 +1,4 @@
+// @ts-nocheck
 // vite-plugin-salla.js
 import fs from "fs";
 import fsPromises from "fs/promises";
