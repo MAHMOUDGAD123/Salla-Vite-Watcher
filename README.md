@@ -1,3 +1,5 @@
+![Logo](./Salla-Vite.png)
+
 # Salla Vite Plugin (`vite-plugin-salla`)
 
 A high-performance, modern Vite plugin that supercharges Salla theme development by replacing the legacy Webpack workflow. Enjoy instant hot reloads, robust .twig syncing, and a seamless developer experience tailored for Salla CLI and Twilight themes.
