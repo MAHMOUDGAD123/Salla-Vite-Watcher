@@ -14,8 +14,17 @@ type Prettify<T> = {
 
 type SallaViteMode = "development" | "production";
 
-type LogType = "error" | "warn" | "info";
-type LogLevel = LogType | "silent";
+type HMRClientWebSocketPorts = {
+  assetsPort: number;
+  hmrPort: number;
+}
+
+type HMRClientWebSocketAciton = "setup-hmr" | "css-hmr" | "js-hmr";
+
+type HMRClientWebSocketMessage = {
+  action: HMRClientWebSocketAciton;
+  data: unknown;
+}
 
 type SallaCliParams = {
   theme_id: number | undefined;
@@ -94,7 +103,5 @@ type DeferedStyleBuild = {
 };
 
 type FilePath = string;
-
-type SyncQueueItem = { file: FilePath; resolver: (value: unknown) => void };
 
 // --------------------------------------------------------------------------

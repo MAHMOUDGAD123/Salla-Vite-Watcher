@@ -1,33 +1,6 @@
 import path from "path";
 import fs, { promises as fsPromises } from "fs";
-
-/**
- * A custom logger
- * @param msg a string message to log
- * @param type mode color
- */
-export function logger(
-  msg: string,
-  type: "info" | "success" | "warning" | "error" | "debug"
-) {
-  const map = new Map([
-    ["info", 46],
-    ["success", 42],
-    ["warning", 43],
-    ["error", 41],
-    ["debug", 45],
-  ]);
-
-  // if (type === "debug" && !process.env.DEBUG) return;
-
-  const col = map.get(type)!;
-
-  console.log(
-    `\n\x1b[1m\x1b[${col}m SALLA VITE \x1b[0m \x1b[30m[${new Date().toLocaleTimeString()}]\x1b[0m \x1b[${
-      col - 10
-    }m${msg}\x1b[0m`
-  );
-}
+import { Logger } from "./logger.ts";
 
 /**
  * Extract the name of the file from the file path
@@ -99,9 +72,10 @@ export async function clearFolder(folderPath: string): Promise<void> {
         }
       })
     );
-  } catch (e) {
-    if ((e as NodeJS.ErrnoException).code !== "ENOENT") {
-      console.error(`Failed to clear folder ${folderPath}:`, e);
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException).code !== "ENOENT") {
+      Logger.error(`Failed to clear folder ${folderPath}`);
+      console.error(err);
     }
   }
 }

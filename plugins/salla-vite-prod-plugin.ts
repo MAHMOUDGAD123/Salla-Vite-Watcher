@@ -1,7 +1,8 @@
 import type { Plugin } from "vite";
-import { formatFileSize, logger } from "./utils/tools.ts";
+import { formatFileSize } from "./utils/tools.ts";
 import { removeCssCommentsPlugin } from "./utils/helper-plugins.ts";
 import { GLOBAL_VITE_CONFIG } from "./utils/globals.ts";
+import { Logger } from "./utils/logger.ts";
 
 export const sallaViteProductionPlugin = ({
   rollupEntry,
@@ -79,9 +80,8 @@ export const sallaViteProductionPlugin = ({
         }
 
         // Log total bundle size
-        logger(
-          `Bundle ${rollupEntryString} -> (${formatFileSize(totalSize)})`,
-          "debug"
+        Logger.info(
+          `Bundle ${rollupEntryString} -> (${formatFileSize(totalSize)})`
         );
       }
     },

@@ -1,5 +1,10 @@
 import path from "path";
-import { scriptDepsEntriesMap, scriptEntriesDepsMap } from "./globals.ts";
+import {
+  scriptDepsEntriesMap,
+  scriptEntriesDepsMap,
+  SRC,
+  SRC_STYLES,
+} from "./globals.ts";
 import { getAllFiles } from "./tools.ts";
 
 /**
@@ -11,12 +16,23 @@ export function excuteInParallel(promisesList: Promise<unknown>[]) {
 }
 
 /**
- * Generate a Vite input object for all files in a source directory,
+ * Generate a Vite input object for a style file in the source directory,
+ * mapping it to a target directory, preserving structure.
+ */
+export function generateStyleRollupEntry(
+  filePath: string
+): Record<string, string> {
+  const relPath = path.relative(SRC_STYLES, filePath);
+  const outPath = path.join("styles", relPath).replace(/\\/g, "/");
+  return { [outPath.replace(/\.[^/.]+$/, "")]: filePath };
+}
+
+/**
+ * Generate a Vite input object for all style files in a source directory,
  * mapping them to a target directory, preserving structure.
  */
-export function generateRollupEntries(
-  srcDir: string,
-  targetDir: string
+export function generateStylesRollupEntries(
+  srcDir: string
 ): Record<string, string> {
   const absSrcDir = path.resolve(process.cwd(), srcDir);
   const files = getAllFiles(absSrcDir, absSrcDir);
@@ -24,9 +40,10 @@ export function generateRollupEntries(
   for (const relFile of files) {
     const absFile = path.join(absSrcDir, relFile);
     if (relFile === "app.scss") {
+      // ignore `/src/assets/styles/app.scss`
       continue;
     }
-    const outPath = path.join(targetDir, relFile).replace(/\\/g, "/");
+    const outPath = path.join("styles", relFile).replace(/\\/g, "/");
     entries[outPath.replace(/\.[^/.]+$/, "")] = absFile;
   }
   return entries;

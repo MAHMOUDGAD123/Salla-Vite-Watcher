@@ -1,4 +1,6 @@
 import type { Rollup } from "vite";
+import { formatFileSize, Timer } from "./tools.ts";
+import { Logger } from "./logger.ts";
 
 export const removeCssCommentsPlugin = (): Rollup.Plugin => {
   return {
@@ -14,30 +16,28 @@ export const removeCssCommentsPlugin = (): Rollup.Plugin => {
   };
 };
 
+type FileType = {
+  fileName: string;
+  name: string;
+  names: string[];
+  needsCodeReference: boolean;
+  originalFileName: string;
+  originalFileNames: string[];
+  source: string;
+  type: "asset" | "chunk";
+};
+
 export const useOriginalAssetsNamesPlugin = (): Rollup.Plugin => {
   return {
-    name: "original-assets-names",
+    name: "use-original-assets-names",
 
     generateBundle(_, bundle) {
-      const testReg = /\d+\.css$/;
-
       Object.keys(bundle).forEach((fileName) => {
-        type FileType = {
-          fileName: string;
-          name: string;
-          names: string[];
-          needsCodeReference: boolean;
-          originalFileName: string;
-          originalFileNames: string[];
-          source: string;
-          type: string;
-        };
-
         const file = bundle[fileName]!;
+        const fileInfo = file as FileType;
 
-        // Check if it's a CSS file with unwanted numbering
-        if (testReg.test(fileName)) {
-          const fileInfo = file as FileType;
+        // Only if the file is asset
+        if (fileInfo.type === "asset") {
           // Get the original name of the file before rollup add the numeric suffix
           const originalFileName = fileInfo.names[0]!;
 
@@ -47,6 +47,60 @@ export const useOriginalAssetsNamesPlugin = (): Rollup.Plugin => {
           }
         }
       });
+    },
+  };
+};
+
+export const logBundleDetailsPlugin = ({
+  rollupEntryName,
+  logDetails,
+}: {
+  rollupEntryName: string;
+  logDetails: boolean;
+}): Rollup.Plugin => {
+  let timer: Timer;
+  const rollupEntryString = `[${rollupEntryName}]`;
+
+  return {
+    name: "log-bundle-details",
+
+    buildStart() {
+      if (logDetails) {
+        timer = new Timer();
+      }
+    },
+
+    generateBundle(_, bundle) {
+      if (logDetails && bundle) {
+        const duration = timer.duration;
+        let totalSize = 0;
+        const fileSizes: Array<{ name: string; size: string; bytes: number }> =
+          [];
+
+        // Calculate sizes for all files in the bundle
+        for (const [fileName, file] of Object.entries(bundle)) {
+          if (file.type === "chunk" || file.type === "asset") {
+            const bytes =
+              file.type === "chunk"
+                ? Buffer.byteLength(file.code || "", "utf8")
+                : Buffer.byteLength(file.source || "", "utf8");
+
+            totalSize += bytes;
+            fileSizes.push({
+              name: fileName,
+              size: formatFileSize(bytes),
+              bytes,
+            });
+          }
+        }
+
+        // Log total bundle size
+        Logger.debug(
+          `Bundle ${rollupEntryString} -> (${formatFileSize(
+            totalSize
+          )}) | (${duration})`
+        );
+      }
     },
   };
 };

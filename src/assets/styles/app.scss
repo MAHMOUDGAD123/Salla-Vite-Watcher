@@ -1,0 +1,46 @@
+// Like this for example
+
+@import "./01-settings/tailwind.scss";
+@import "./01-settings/fonts.scss";
+@import "./01-settings/global.scss";
+@import "./01-settings/breakpoints.scss";
+
+@import "./02-generic/reset.scss";
+@import "./02-generic/common.scss";
+@import "./02-generic/tooltip.scss";
+@import "./02-generic/animations.scss";
+@import "./02-generic/lazyload.scss";
+@import "./02-generic/rtl.scss";
+@import "./02-generic/ltr.scss";
+@import "./02-generic/mixins.scss";
+
+@import "./03-elements/form.scss";
+@import "./03-elements/buttons.scss";
+@import "./03-elements/radio.scss";
+@import "./03-elements/radio-images.scss";
+
+@import "./04-components/header.scss";
+@import "./04-components/footer.scss";
+@import "./04-components/menus.scss";
+@import "./04-components/user-menu.scss";
+@import "./04-components/user-pages.scss";
+@import "./04-components/home-blocks.scss";
+@import "./04-components/slider.scss";
+@import "./04-components/product.scss";
+@import "./04-components/brands.scss";
+@import "./04-components/no-content-placeholder.scss";
+@import "./04-components/gifting.scss";
+@import "./04-components/loyalty.scss";
+@import "./04-components/virtooal.scss";
+@import "./04-components/landing-page.scss";
+@import "./04-components/filters.scss";
+
+@import "./05-utilities/chat-bots.scss";
+@import "./05-utilities/swal.scss";
+@import "./05-utilities/safari-fixes.scss";
+@import "./05-utilities/font-customization.scss";
+
+@import "./06-packages/tools.scss";
+
+// @import "./07-myStyles/file1.scss"
+// @import "./07-myStyles/file2.scss"
