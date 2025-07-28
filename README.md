@@ -1,6 +1,6 @@
 ![Logo](./Salla-Vite.png)
 
-# `Salla Vite Watcher` ⚡
+# <span style="color: #ffd028; font-weight: bolder; font-size:2.5rem">Salla Vite Watcher</span> ⚡
 
 A high-performance, modern Vite watcher that supercharges Salla theme development by replacing the legacy Webpack workflow. Enjoy instant hot reloads, robust .twig syncing, and a seamless developer experience tailored for Salla CLI and Twilight themes.
 
@@ -123,18 +123,14 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
 
    **🔥 HMR Setup:**
 
-   - Add client HMR code at the top of your `/src/assets/js/app.js` file to activate the HMR magic on styles updates:
+   - Import the `_helpers/hmr-activation.ts` file at the top of your `/src/assets/js/app.js` file to activate the HMR magic on styles updates:
 
      ```javascript
      // .....
      // import AppHelpers from "./app-helpers";
 
-     // Add the hmr logic only on DEV mode
-     if (import.meta.env.MODE === "development") {
-       import("./_helpers/hmr-tools.ts").then(({ prepareHMRWS }) => {
-         prepareHMRWS();
-       });
-     }
+     // Just import it here
+     import "./_helpers/hmr-activation";
 
      // class App extends AppHelpers {}
      ```
