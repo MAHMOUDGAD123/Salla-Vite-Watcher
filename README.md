@@ -1,6 +1,6 @@
 ![Logo](./Salla-Vite.png)
 
-# <span style="color: #ffd028; font-weight: bolder; font-size:2.5rem">Salla Vite Watcher</span> ⚡
+# Salla Vite Watcher⚡
 
 A high-performance, modern Vite watcher that supercharges Salla theme development by replacing the legacy Webpack workflow. Enjoy instant hot reloads, robust .twig syncing, and a seamless developer experience tailored for Salla CLI and Twilight themes.
 
