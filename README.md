@@ -2,7 +2,7 @@
 
 # Salla Vite Watcher⚡
 
-A high-performance, modern Vite watcher that supercharges Salla theme development by replacing the legacy Webpack workflow. Enjoy instant hot reloads, robust .twig syncing, and a seamless developer experience tailored for Salla CLI and Twilight themes.
+A high-performance, modern Vite watcher that supercharges Salla theme development by replacing the legacy Webpack workflow. Enjoy instant styles style files hot reloads, robust .twig syncing, and a seamless developer experience tailored for Salla CLI and Twilight themes.
 
 ---
 
@@ -108,6 +108,8 @@ pnpm prod             # Production build with optimization
 ---
 
 ## ⬆️ Migration Guide: Preparing Your Salla Theme for Vite
+
+> 📺 **Watch the Migration Demo**: [YouTube Tutorial - Migrating from Webpack to Vite](https://youtu.be/7W7FvCDJzEs) - A comprehensive video guide showing the complete migration process step-by-step.
 
 Follow these steps to migrate your Salla theme to use Vite as a development tool:
 
