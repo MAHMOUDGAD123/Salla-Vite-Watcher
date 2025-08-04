@@ -22,7 +22,7 @@ A high-performance, modern Vite watcher that supercharges Salla theme developmen
 1. **File Watching**
 
    - Monitors all `src/**/*.twig` and `src/**/*.json` files for changes using a high-performance watcher.
-   - Debounces rapid changes (500ms) to avoid redundant syncs.
+   - Debounces rapid changes (700ms) to avoid redundant syncs.
    - Watches image files in `src/assets/images/` for automatic copying to `public/images/`.
    - **Tailwind optimization**: Rebuilds the Tailwind style file only on `.twig` files updates for faster performance.
 
@@ -271,9 +271,9 @@ Follow these steps to migrate your Salla theme to use Vite as a development tool
 ## ⚙️ Configuration & Customization
 
 - **Debug Logging**: `NODE_ENV=debug pnpm dev` for verbose output.
-- **Custom WebSocket Port**: Set `WS_PORT=xxxx salla theme preview` if your preview runs on a non-default port.
 - **Entry Points**: The plugin auto-detects all main JS entrypoints in `src/js/_output/`.
 - **Image Assets**: Place images in `src/assets/images/` for auto-copying to `public/images/`.
+- **style Assets**: Place styles in `src/assets/styles/` for auto-rebuild to `public/styles/`.
 - **Style Management**: SCSS files are automatically compiled and optimized.
 
 ---
