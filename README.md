@@ -42,7 +42,6 @@ A high-performance, modern Vite watcher that supercharges Salla theme developmen
 
    - JS/SCSS entrypoints are auto-configured for Vite with intelligent detection.
    - Images in `src/assets/images` are copied to `public/images` only if changed.
-   - Ensures `app.scss` is always imported in `app.js` for consistent styling.
    - Supports multiple script and style entry points with automatic rollup configuration.
    - **Incremental style processing**: Only rebuilds individual style files instead of the entire `app.scss` bundle.
    - **Smart script dependency tracking**: Rebuilds scripts only when the file itself or its dependencies change.
