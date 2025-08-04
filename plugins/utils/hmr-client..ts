@@ -31,7 +31,7 @@ export class HMRClient {
 
         // Listen for messages from client
         ws.on("message", (_msg) => {
-          Logger.success(_msg.toString());
+          Logger.debug(_msg.toString());
         });
 
         // Handle client disconnection

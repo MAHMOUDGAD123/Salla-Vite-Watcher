@@ -48,7 +48,7 @@ export class SallaViteBuilder {
   /**
    * This porperty hold the WebSocket reconnect trials if the connnection failed
    */
-  private readonly webSocketReconnetTrials = 1; // times
+  private readonly webSocketReconnetTrials = 2; // times
   /**
    * This porperty will hold the time to wait before try to reconnect the WebSocket again
    */
@@ -56,7 +56,7 @@ export class SallaViteBuilder {
   /**
    * This property will hold the debouncing delay for (.twig | .json) files sync with salla server
    */
-  private readonly syncDebounce = 500; // ms
+  private readonly syncDebounce = 700; // ms
   /**
    * This property will hold a regex used to extract the current imported styles files in the `/src/assets/styles/app.scss` file
    * used with {@link extractImportedEntriesFromAppFileContent} function

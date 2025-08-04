@@ -28,19 +28,20 @@ export class CSSHotReloader {
       existingLink.remove();
       this.loadingLinks.delete(this.cssFileName);
       HMRLoading.hideLoading();
+
+      console.log(
+        `%cSalla HMR%c app.css %chot reloaded %c(${duration}) ⚡`,
+        "border: 1px solid #ffd52d; color: #ffd52d; padding: 2px 5px; border-radius: 5px;",
+        "color: #BD34FE;",
+        "color: #FFDD35;",
+        "color: #FFA800;"
+      );
     };
 
     // Insert new link after existing one
     existingLink.parentNode!.insertBefore(newLink, existingLink.nextSibling);
 
     const duration = timer.duration;
-    console.log(
-      `%cSalla HMR%c app.css %chot reloaded %c(${duration}) ⚡`,
-      "border: 1px solid #ffd52d; color: #ffd52d; padding: 2px 5px; border-radius: 5px;",
-      "color: #BD34FE;",
-      "color: #FFDD35;",
-      "color: #FFA800;"
-    );
 
     return duration;
   }
@@ -141,11 +142,13 @@ export const prepareHMRWS = async () => {
         const ports = eventMsg.data as ClientPorts;
         clientPorts.assetsPort = ports.assetsPort;
         clientPorts.hmrPort = ports.hmrPort;
+        connection.send("Client HMR setup is done ⚡");
         break;
       }
       case "css-hmr": {
+        // const timer = new Timer();
         await cssreHotReloader.reloadCSS();
-        // connection.send(`app.css hmr update in -> (${duration})`);
+        // connection.send(`Client HMR ⚡ done in -> (${timer.duration})`);
         break;
       }
       case "js-hmr": {
