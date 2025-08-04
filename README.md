@@ -109,7 +109,7 @@ pnpm prod             # Production build with optimization
 
 ## ⬆️ Migration Guide: Preparing Your Salla Theme for Vite
 
-> 📺 **Watch the Migration Demo**: [YouTube Tutorial - Migrating from Webpack to Vite](https://youtu.be/7W7FvCDJzEs){:target="_blank"} - A comprehensive video guide showing the complete migration process step-by-step.
+> 📺 **Watch the Migration Demo**: <a href="https://youtu.be/7W7FvCDJzEs" target="_blank" rel="noopener noreferrer">YouTube Tutorial - Migrating from Webpack to Vite</a> - A comprehensive video guide showing the complete migration process step-by-step.
 
 Follow these steps to migrate your Salla theme to use Vite as a development tool:
 
