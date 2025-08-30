@@ -90,6 +90,10 @@ export class HMRClient {
     this.sendToClient({ action: "css-hmr", data: null });
   }
 
+  async reload() {
+    this.sendToClient({ action: "reload", data: null });
+  }
+
   // async jsHMR(data: unknown) {
   //   this.sendToClient({ action: "js-hmr", data });
   // }

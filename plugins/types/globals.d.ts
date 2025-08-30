@@ -19,7 +19,7 @@ type HMRClientWebSocketPorts = {
   hmrPort: number;
 }
 
-type HMRClientWebSocketAciton = "setup-hmr" | "css-hmr" | "js-hmr";
+type HMRClientWebSocketAciton = "setup-hmr" | "css-hmr" | "js-hmr" | 'reload';
 
 type HMRClientWebSocketMessage = {
   action: HMRClientWebSocketAciton;

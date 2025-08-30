@@ -386,7 +386,7 @@ export class SallaViteBuilder {
             // Only rebuild the app.scss file and hmr it if the entry is imported
             if (this.isStyleEntryImported(rollupEntryName)) {
               await this.buildStylesAppFile();
-              await this.hmrClient?.cssHMR();
+              await this.hmrClient!.cssHMR();
             } else {
               Logger.debug(
                 `HMR update ignored for Entry [${rollupEntryName}] - because it's not imported`
@@ -441,7 +441,7 @@ export class SallaViteBuilder {
           // Only rebuild the app.scss file and hmr it if the entry is imported
           if (this.isStyleEntryImported(rollupEntryName)) {
             await this.buildStylesAppFile();
-            await this.hmrClient?.cssHMR();
+            await this.hmrClient!.cssHMR();
           } else {
             Logger.debug(
               `HMR update ignored for Entry [${rollupEntryName}] - because it's not imported`
@@ -608,7 +608,8 @@ export class SallaViteBuilder {
       !this.isScriptBuilding &&
       !this.isStyleBuilding
     ) {
-      this.sallaConnection.send(JSON.stringify({ msg: "reload" }));
+      // this.sallaConnection.send(JSON.stringify({ msg: "reload" }));
+      await this.hmrClient!.reload();
       Logger.info("Preview reloaded");
     } else {
       Logger.debug(`Preview reload ignored`);

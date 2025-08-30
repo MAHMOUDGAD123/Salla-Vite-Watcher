@@ -93,7 +93,7 @@ class HMRLoading {
 
 type ClientPorts = { assetsPort: number; hmrPort: number };
 type EventMessage = {
-  action: "setup-hmr" | "css-hmr" | "js-hmr";
+  action: "setup-hmr" | "css-hmr" | "js-hmr" | "reload";
   data: unknown;
 };
 
@@ -149,6 +149,10 @@ export const prepareHMRWS = async () => {
         // const timer = new Timer();
         await cssreHotReloader.reloadCSS();
         // connection.send(`Client HMR ⚡ done in -> (${timer.duration})`);
+        break;
+      }
+      case "reload": {
+        location.reload();
         break;
       }
       case "js-hmr": {
