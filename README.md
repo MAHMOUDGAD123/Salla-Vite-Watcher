@@ -336,7 +336,6 @@ Want to extend or improve the plugin? PRs are welcome! The code is modular and w
 ## 🙏 Credits & Acknowledgements
 
 - Inspired by the original Salla Webpack watcher plugin.
-- Thanks to the Salla developer community for feedback and testing.
 - Built by Mahmoud Gad with 💙 for Salla theme creators.
 
 ---
