@@ -38,7 +38,7 @@ import {
   sallaViteStylePlugin,
 } from "./salla-vite-style-dev-plugin.ts";
 import { Logger } from "./utils/logger.ts";
-import { HMRClient } from "./utils/hmr-client..ts";
+import { HMRClient } from "./utils/hmr-client.ts";
 
 export class SallaViteBuilder {
   //=================================================================================
